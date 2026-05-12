@@ -1,5 +1,5 @@
 # --- Stage 1: Build Frontend ---
-FROM node:18-alpine AS frontend-build
+FROM node:20-alpine AS frontend-build
 WORKDIR /frontend
 COPY campusmart-frontend/package*.json ./
 RUN npm install
