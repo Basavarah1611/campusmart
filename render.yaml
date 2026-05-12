@@ -1,0 +1,33 @@
+services:
+  # Backend Service (Spring Boot)
+  - type: web
+    name: campusmart-backend
+    runtime: java
+    buildCommand: mvn clean install -DskipTests
+    startCommand: java -jar target/campusmart-backend-1.0.0.jar
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        sync: false
+      - key: SPRING_DATASOURCE_USERNAME
+        value: postgres
+      - key: SPRING_DATASOURCE_PASSWORD
+        sync: false
+      - key: APP_JWT_SECRET
+        generateValue: true
+      - key: APP_SUPABASE_URL
+        value: https://ilsrhtcxztpaedpfqbpv.supabase.co
+      - key: APP_SUPABASE_KEY
+        sync: false
+
+  # Frontend Service (React Static Site)
+  - type: web
+    name: campusmart-frontend
+    runtime: static
+    buildCommand: cd campusmart-frontend && npm install && npm run build
+    staticPublishPath: campusmart-frontend/dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          name: campusmart-backend
+          type: web
+          property: host
