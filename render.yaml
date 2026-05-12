@@ -1,10 +1,9 @@
 services:
-  # Backend Service (Spring Boot)
   - type: web
-    name: campusmart-backend
+    name: campusmart-all-in-one
     runtime: docker
-    dockerContext: ./campusmart-backend
-    dockerfilePath: ./campusmart-backend/Dockerfile
+    dockerContext: .
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: SPRING_DATASOURCE_URL
         sync: false
@@ -18,16 +17,3 @@ services:
         value: https://ilsrhtcxztpaedpfqbpv.supabase.co
       - key: APP_SUPABASE_KEY
         sync: false
-
-  # Frontend Service (React Static Site)
-  - type: web
-    name: campusmart-frontend
-    runtime: static
-    buildCommand: cd campusmart-frontend && npm install && npm run build
-    staticPublishPath: campusmart-frontend/dist
-    envVars:
-      - key: VITE_API_URL
-        fromService:
-          name: campusmart-backend
-          type: web
-          property: host
