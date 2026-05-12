@@ -7,7 +7,7 @@ COPY campusmart-frontend/ ./
 RUN npm run build
 
 # --- Stage 2: Build Backend ---
-FROM maven:3.8.4-openjdk-17-slim AS backend-build
+FROM maven:3.9.6-eclipse-temurin-17 AS backend-build
 WORKDIR /backend
 COPY campusmart-backend/pom.xml .
 # Copy the frontend build into Spring Boot's static resources
@@ -16,7 +16,7 @@ COPY campusmart-backend/src ./src
 RUN mvn clean package -DskipTests
 
 # --- Stage 3: Run Application ---
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 COPY --from=backend-build /backend/target/*.jar app.jar
 EXPOSE 8080
