@@ -2,9 +2,9 @@ services:
   # Backend Service (Spring Boot)
   - type: web
     name: campusmart-backend
-    runtime: java
-    buildCommand: mvn clean install -DskipTests
-    startCommand: java -jar target/campusmart-backend-1.0.0.jar
+    runtime: docker
+    dockerContext: ./campusmart-backend
+    dockerfilePath: ./campusmart-backend/Dockerfile
     envVars:
       - key: SPRING_DATASOURCE_URL
         sync: false
