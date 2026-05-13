@@ -29,30 +29,41 @@ export default function Home() {
     <div className="animate-fade-in">
       {/* Hero Section */}
       <section className="gradient-hero text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-primary-500 rounded-full blur-[100px]"></div>
-          <div className="absolute bottom-10 right-20 w-96 h-96 bg-purple-500 rounded-full blur-[120px]"></div>
+        {/* Dynamic Background Effects */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute top-10 left-[20%] w-[500px] h-[500px] bg-primary-600/40 rounded-full blur-[120px] mix-blend-screen animate-pulse"></div>
+          <div className="absolute bottom-10 right-[20%] w-[400px] h-[400px] bg-purple-500/30 rounded-full blur-[100px] mix-blend-screen animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-indigo-500/20 rounded-full blur-[150px] mix-blend-screen"></div>
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36">
-          <div className="text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-1.5 mb-6 text-sm border border-white/10">
-              <Sparkles size={14} className="text-amber-400" />
-              <span className="text-surface-200">Exclusive for City Engineering College</span>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36">
+          <div className="text-center max-w-3xl mx-auto animate-fade-in-up">
+            <div className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-md rounded-full px-5 py-2 mb-8 text-sm border border-white/10 shadow-[0_0_15px_rgba(255,255,255,0.05)]">
+              <Sparkles size={16} className="text-amber-300" />
+              <span className="text-white/90 font-medium tracking-wide">Exclusive for City Engineering College</span>
             </div>
-            <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+            
+            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-[1.1] tracking-tight text-white drop-shadow-sm">
               Your Campus
-              <span className="bg-gradient-to-r from-primary-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"> Marketplace</span>
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300 drop-shadow-sm"> 
+                Marketplace
+              </span>
             </h1>
-            <p className="text-lg md:text-xl text-surface-300 mb-10 leading-relaxed">
+            
+            <p className="text-lg md:text-xl text-indigo-100/80 mb-10 leading-relaxed font-light max-w-2xl mx-auto">
               Buy and sell notes, textbooks, electronics, find roommates, and grab event tickets — all within your college community.
             </p>
-            <SearchBar className="max-w-2xl mx-auto mb-8" />
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link to="/browse" className="btn-primary px-8 py-3 text-base no-underline">
+            
+            <div className="relative p-2 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl max-w-2xl mx-auto mb-10 transform transition-all hover:scale-[1.01] hover:bg-white/10">
+              <SearchBar className="w-full" />
+            </div>
+            
+            <div className="flex flex-wrap justify-center gap-5">
+              <Link to="/browse" className="btn-primary px-8 py-4 text-base no-underline shadow-[0_0_20px_rgba(99,102,241,0.4)] hover:shadow-[0_0_30px_rgba(99,102,241,0.6)]">
                 Browse All <ArrowRight size={18} />
               </Link>
-              <Link to="/register" className="btn-secondary !bg-white/10 !text-white !border-white/20 px-8 py-3 text-base no-underline hover:!bg-white/20">
+              <Link to="/register" className="btn-secondary !bg-white/5 !text-white !border-white/20 px-8 py-4 text-base no-underline backdrop-blur-md hover:!bg-white/10">
                 Join Now
               </Link>
             </div>
@@ -60,29 +71,37 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats Strip */}
-      <section className="bg-white border-b border-surface-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="grid grid-cols-3 gap-8">
-            <div className="flex items-center justify-center gap-3">
-              <Users size={24} className="text-primary-500" />
-              <div>
-                <p className="font-bold text-surface-800 text-lg">Campus Only</p>
-                <p className="text-xs text-surface-400">Verified students</p>
+      {/* Stats Strip - Floating Style */}
+      <section className="relative z-20 -mt-10 mb-10">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="glass-card bg-white/90 backdrop-blur-xl p-6 md:p-8 rounded-2xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] border border-white">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-surface-200">
+              <div className="flex items-center justify-center gap-4 pt-4 md:pt-0">
+                <div className="w-12 h-12 rounded-xl bg-primary-50 text-primary-600 flex items-center justify-center">
+                  <Users size={24} />
+                </div>
+                <div>
+                  <p className="font-bold text-surface-900 text-lg">Campus Only</p>
+                  <p className="text-sm text-surface-500 font-medium">Verified students</p>
+                </div>
               </div>
-            </div>
-            <div className="flex items-center justify-center gap-3">
-              <ShieldCheck size={24} className="text-accent-500" />
-              <div>
-                <p className="font-bold text-surface-800 text-lg">Safe & Trusted</p>
-                <p className="text-xs text-surface-400">Verified community</p>
+              <div className="flex items-center justify-center gap-4 pt-4 md:pt-0">
+                <div className="w-12 h-12 rounded-xl bg-accent-50 text-accent-600 flex items-center justify-center">
+                  <ShieldCheck size={24} />
+                </div>
+                <div>
+                  <p className="font-bold text-surface-900 text-lg">Safe & Trusted</p>
+                  <p className="text-sm text-surface-500 font-medium">Verified community</p>
+                </div>
               </div>
-            </div>
-            <div className="flex items-center justify-center gap-3">
-              <TrendingUp size={24} className="text-purple-500" />
-              <div>
-                <p className="font-bold text-surface-800 text-lg">Zero Fees</p>
-                <p className="text-xs text-surface-400">Free to use</p>
+              <div className="flex items-center justify-center gap-4 pt-4 md:pt-0">
+                <div className="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center">
+                  <TrendingUp size={24} />
+                </div>
+                <div>
+                  <p className="font-bold text-surface-900 text-lg">Zero Fees</p>
+                  <p className="text-sm text-surface-500 font-medium">100% Free to use</p>
+                </div>
               </div>
             </div>
           </div>

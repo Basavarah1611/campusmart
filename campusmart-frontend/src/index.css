@@ -2,7 +2,7 @@
 @import "tailwindcss";
 
 /* =============================================
-   CampusMart Design System
+   CampusMart Premium Design System
    ============================================= */
 
 @theme {
@@ -31,7 +31,6 @@
   --color-surface-700: #334155;
   --color-surface-800: #1e293b;
   --color-surface-900: #0f172a;
-  --color-surface-950: #020617;
 
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 }
@@ -46,31 +45,42 @@
 body {
   font-family: var(--font-sans);
   background-color: var(--color-surface-50);
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(253,16%,7%,0.03) 0, transparent 50%), 
+    radial-gradient(at 50% 0%, hsla(225,39%,30%,0.03) 0, transparent 50%), 
+    radial-gradient(at 100% 0%, hsla(339,49%,30%,0.03) 0, transparent 50%);
   color: var(--color-surface-800);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
 }
 
-/* Glassmorphism Card */
+/* Glassmorphism Card (Premium) */
 .glass-card {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 1rem;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 1.5rem;
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 10px 15px -3px rgba(0, 0, 0, 0.05),
+    0 20px 25px -5px rgba(0, 0, 0, 0.02);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-card:hover {
-  box-shadow: 0 8px 40px rgba(79, 70, 229, 0.12);
+  box-shadow: 
+    0 10px 15px -3px rgba(0, 0, 0, 0.08),
+    0 25px 50px -12px rgba(79, 70, 229, 0.15);
   transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.9);
 }
 
 /* Gradient Backgrounds */
 .gradient-primary {
-  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%);
+  background: linear-gradient(135deg, #4f46e5 0%, #8b5cf6 100%);
 }
 
 .gradient-hero {
@@ -81,28 +91,40 @@ body {
   background: linear-gradient(135deg, #10b981 0%, #059669 100%);
 }
 
+.text-gradient {
+  background: linear-gradient(135deg, #4f46e5 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 /* Button Styles */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.75rem;
+  padding: 0.875rem 1.75rem;
   background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
   color: white;
   border: none;
-  border-radius: 0.75rem;
+  border-radius: 1rem;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
+  box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.39);
 }
 
 .btn-primary:hover {
   background: linear-gradient(135deg, #4338ca 0%, #4f46e5 100%);
-  box-shadow: 0 4px 20px rgba(79, 70, 229, 0.4);
-  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
 }
 
 .btn-secondary {
@@ -110,65 +132,123 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.75rem;
-  background: white;
-  color: var(--color-primary-600);
-  border: 2px solid var(--color-primary-200);
-  border-radius: 0.75rem;
+  padding: 0.875rem 1.75rem;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color-surface-800);
+  border: 1px solid var(--color-surface-200);
+  border-radius: 1rem;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.02);
 }
 
 .btn-secondary:hover {
-  background: var(--color-primary-50);
-  border-color: var(--color-primary-400);
+  background: white;
+  border-color: var(--color-surface-300);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transform: translateY(-1px);
 }
 
-.btn-danger {
-  display: inline-flex;
+/* 
+  NEW ROBUST INPUT STYLES
+  These classes solve the overlapping icon/text issue by using flexbox
+  instead of absolute positioning with fragile padding.
+*/
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-surface-700);
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 1.5px solid var(--color-surface-200);
+  border-radius: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.input-wrapper:focus-within {
+  border-color: var(--color-primary-400);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15), inset 0 2px 4px rgba(0,0,0,0.01);
+}
+
+.input-icon-left {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1.25rem;
-  background: linear-gradient(135deg, #ef4444, #dc2626);
-  color: white;
-  border: none;
-  border-radius: 0.5rem;
-  font-weight: 500;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  color: var(--color-surface-400);
+  transition: color 0.3s ease;
+  pointer-events: none;
+  z-index: 10;
 }
 
-.btn-danger:hover {
-  background: linear-gradient(135deg, #dc2626, #b91c1c);
-  box-shadow: 0 4px 16px rgba(239, 68, 68, 0.3);
+.input-wrapper:focus-within .input-icon-left {
+  color: var(--color-primary-500);
 }
 
-/* Input Styles */
 .input-field {
+  flex: 1;
   width: 100%;
-  padding: 0.75rem 1rem;
-  background: white;
-  border: 2px solid var(--color-surface-200);
-  border-radius: 0.75rem;
+  /* 
+     Padding-left: 2.75rem (44px) ensures text never overlaps 
+     with the absolute positioned icon (16px + 1rem left).
+  */
+  padding: 0.875rem 1rem 0.875rem 3rem; 
+  background: transparent;
+  border: none;
   font-family: var(--font-sans);
   font-size: 0.95rem;
   color: var(--color-surface-800);
-  transition: all 0.3s ease;
   outline: none;
+  position: relative;
+  z-index: 5;
 }
 
-.input-field:focus {
-  border-color: var(--color-primary-400);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+/* For inputs WITHOUT icons, we might want a different class or just let it be.
+   But most our inputs have icons. If one doesn't, we can add a utility. */
+.input-field-no-icon {
+  padding-left: 1rem !important;
 }
 
 .input-field::placeholder {
   color: var(--color-surface-400);
+}
+
+.input-icon-right {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 0.5rem;
+  padding-right: 1rem;
+  color: var(--color-surface-400);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  transition: color 0.2s ease;
+}
+
+.input-icon-right:hover {
+  color: var(--color-surface-600);
 }
 
 /* Animations */
@@ -183,11 +263,6 @@ body {
   }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
 @keyframes slideDown {
   from {
     opacity: 0;
@@ -199,21 +274,12 @@ body {
   }
 }
 
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(79, 70, 229, 0.2); }
-  50% { box-shadow: 0 0 40px rgba(79, 70, 229, 0.4); }
-}
-
 .animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .animate-slide-down {
-  animation: slideDown 0.3s ease-out forwards;
+  animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Skeleton Loading */
@@ -263,34 +329,18 @@ body {
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-surface-100);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--color-surface-300);
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-surface-400);
 }
-
-/* Toast notification */
-.toast {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  padding: 1rem 1.5rem;
-  border-radius: 0.75rem;
-  color: white;
-  font-weight: 500;
-  z-index: 9999;
-  animation: slideDown 0.3s ease-out, fadeIn 0.3s ease-out;
-}
-
-.toast-success { background: linear-gradient(135deg, #10b981, #059669); }
-.toast-error { background: linear-gradient(135deg, #ef4444, #dc2626); }

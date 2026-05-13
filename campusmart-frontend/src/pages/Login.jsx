@@ -30,76 +30,82 @@ export default function Login() {
     <div className="min-h-[80vh] flex items-center justify-center px-4 py-12 animate-fade-in-up">
       <div className="w-full max-w-md">
         {/* Header */}
-        <div className="text-center mb-8">
-          <div className="w-14 h-14 gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-            <ShoppingBag size={28} className="text-white" />
+        <div className="text-center mb-10">
+          <div className="w-16 h-16 gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl shadow-indigo-500/30 transform transition hover:scale-105">
+            <ShoppingBag size={32} className="text-white" />
           </div>
-          <h1 className="text-2xl font-bold text-surface-900 mb-2">Welcome back</h1>
-          <p className="text-surface-500">Sign in to your CampusMart account</p>
+          <h1 className="text-3xl font-extrabold text-surface-900 mb-2">Welcome back</h1>
+          <p className="text-surface-500 font-medium">Sign in to your CampusMart account</p>
         </div>
 
         {/* Form */}
-        <div className="glass-card p-8">
+        <div className="glass-card p-8 md:p-10">
           {error && (
-            <div className="bg-red-50 text-red-600 px-4 py-3 rounded-lg text-sm mb-6 border border-red-100">
-              {error}
+            <div className="bg-red-50 text-red-600 px-4 py-3 rounded-xl text-sm mb-6 border border-red-100 flex items-center gap-2">
+              <span className="font-semibold">Error:</span> {error}
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div>
-              <label className="block text-sm font-medium text-surface-700 mb-1.5">Email</label>
-              <div className="relative">
-                <Mail size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-surface-400" />
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="input-group">
+              <label className="input-label">Email</label>
+              <div className="input-wrapper">
+                <div className="input-icon-left">
+                  <Mail size={18} />
+                </div>
                 <input
                   type="email"
                   required
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="input-field pl-10"
+                  className="input-field"
                   placeholder="you@cityengineeringcollege.ac.in"
                 />
               </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-surface-700 mb-1.5">Password</label>
-              <div className="relative">
-                <Lock size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-surface-400" />
+            <div className="input-group">
+              <label className="input-label">Password</label>
+              <div className="input-wrapper">
+                <div className="input-icon-left">
+                  <Lock size={18} />
+                </div>
                 <input
                   type={showPassword ? 'text' : 'password'}
                   required
                   value={form.password}
                   onChange={(e) => setForm({ ...form, password: e.target.value })}
-                  className="input-field pl-10 pr-10"
+                  className="input-field"
                   placeholder="Enter your password"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-surface-400 hover:text-surface-600 bg-transparent border-none cursor-pointer"
+                  className="input-icon-right"
                 >
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
             </div>
 
-            <button type="submit" disabled={loading} className="btn-primary w-full py-3 disabled:opacity-50">
+            <button type="submit" disabled={loading} className="btn-primary w-full py-3.5 mt-2 disabled:opacity-70">
               {loading ? (
                 <span className="flex items-center justify-center gap-2">
-                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
                   Signing in...
                 </span>
               ) : 'Sign In'}
             </button>
           </form>
 
-          <p className="text-center text-sm text-surface-500 mt-6">
-            Don't have an account?{' '}
-            <Link to="/register" className="text-primary-600 font-semibold hover:text-primary-700 no-underline">
-              Sign Up
-            </Link>
-          </p>
+          <div className="mt-8 pt-6 border-t border-surface-200/50 text-center">
+            <p className="text-sm text-surface-500 font-medium">
+              Don't have an account?{' '}
+              <Link to="/register" className="text-gradient font-bold hover:opacity-80 transition-opacity no-underline ml-1">
+                Sign Up
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>

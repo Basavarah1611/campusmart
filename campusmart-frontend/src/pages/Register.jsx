@@ -49,121 +49,148 @@ export default function Register() {
   return (
     <div className="min-h-[90vh] flex items-center justify-center px-4 py-16 animate-fade-in-up">
       <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <div className="w-14 h-14 gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-            <ShoppingBag size={28} className="text-white" />
+        <div className="text-center mb-10">
+          <div className="w-16 h-16 gradient-primary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl shadow-indigo-500/30 transform transition hover:scale-105">
+            <ShoppingBag size={32} className="text-white" />
           </div>
-          <h1 className="text-2xl font-bold text-surface-900 mb-2">Create Account</h1>
-          <p className="text-surface-500">Join your campus marketplace</p>
+          <h1 className="text-3xl font-extrabold text-surface-900 mb-2">Create Account</h1>
+          <p className="text-surface-500 font-medium">Join your campus marketplace</p>
         </div>
 
-        <div className="glass-card p-8">
+        <div className="glass-card p-8 md:p-10">
           {error && (
-            <div className="bg-red-50 text-red-600 px-4 py-3 rounded-lg text-sm mb-6 border border-red-100">{error}</div>
+            <div className="bg-red-50 text-red-600 px-4 py-3 rounded-xl text-sm mb-6 border border-red-100 flex items-center gap-2">
+              <span className="font-semibold">Error:</span> {error}
+            </div>
           )}
 
           <form onSubmit={handleSubmit} className="space-y-5">
-            <div>
-              <label className="block text-sm font-medium text-surface-700 mb-1.5">Full Name *</label>
-              <div className="relative">
-                <User size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-surface-400" />
+            <div className="input-group">
+              <label className="input-label">Full Name *</label>
+              <div className="input-wrapper">
+                <div className="input-icon-left">
+                  <User size={18} />
+                </div>
                 <input
                   type="text" required value={form.fullName}
                   onChange={(e) => setForm({ ...form, fullName: e.target.value })}
-                  className="input-field pl-10" placeholder="John Doe"
+                  className="input-field" placeholder="John Doe"
                 />
               </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-surface-700 mb-1.5">College Email *</label>
-              <div className="relative">
-                <Mail size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-surface-400" />
+            <div className="input-group">
+              <label className="input-label">College Email *</label>
+              <div className="input-wrapper">
+                <div className="input-icon-left">
+                  <Mail size={18} />
+                </div>
                 <input
                   type="email" required value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="input-field pl-10" placeholder="you@cityengineeringcollege.ac.in"
+                  className="input-field" placeholder="you@cityengineeringcollege.ac.in"
                 />
               </div>
-              <p className="text-xs text-surface-400 mt-1">Only @cityengineeringcollege.ac.in emails accepted</p>
+              <p className="text-xs text-surface-400 mt-1 pl-1">Only @cityengineeringcollege.ac.in emails accepted</p>
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="block text-sm font-medium text-surface-700 mb-1.5">Password *</label>
-                <div className="relative">
-                  <Lock size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-surface-400" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="input-group">
+                <label className="input-label">Password *</label>
+                <div className="input-wrapper">
+                  <div className="input-icon-left">
+                    <Lock size={18} />
+                  </div>
                   <input
                     type={showPassword ? 'text' : 'password'} required minLength={6}
                     value={form.password}
                     onChange={(e) => setForm({ ...form, password: e.target.value })}
-                    className="input-field pl-10" placeholder="Min 6 chars"
+                    className="input-field" placeholder="Min 6 chars"
                   />
                 </div>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-surface-700 mb-1.5">Confirm *</label>
-                <div className="relative">
-                  <Lock size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-surface-400" />
+              
+              <div className="input-group">
+                <label className="input-label">Confirm *</label>
+                <div className="input-wrapper">
+                  <div className="input-icon-left">
+                    <Lock size={18} />
+                  </div>
                   <input
                     type={showPassword ? 'text' : 'password'} required
                     value={form.confirmPassword}
                     onChange={(e) => setForm({ ...form, confirmPassword: e.target.value })}
-                    className="input-field pl-10" placeholder="Confirm"
+                    className="input-field" placeholder="Confirm"
                   />
                   <button type="button" onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 text-surface-400 bg-transparent border-none cursor-pointer">
-                    {showPassword ? <EyeOff size={14} /> : <Eye size={14} />}
+                    className="input-icon-right">
+                    {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
                   </button>
                 </div>
               </div>
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-surface-700 mb-1.5">Phone (optional)</label>
-              <div className="relative">
-                <Phone size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-surface-400" />
+            <div className="input-group pt-2 border-t border-surface-200/50">
+              <label className="input-label">Phone (optional)</label>
+              <div className="input-wrapper">
+                <div className="input-icon-left">
+                  <Phone size={18} />
+                </div>
                 <input
                   type="tel" value={form.phone}
                   onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                  className="input-field pl-10" placeholder="+91 9876543210"
+                  className="input-field" placeholder="+91 9876543210"
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="block text-sm font-medium text-surface-700 mb-1.5">WhatsApp</label>
-                <input
-                  type="text" value={form.whatsapp}
-                  onChange={(e) => setForm({ ...form, whatsapp: e.target.value })}
-                  className="input-field" placeholder="WhatsApp #"
-                />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="input-group">
+                <label className="input-label">WhatsApp</label>
+                <div className="input-wrapper">
+                  <div className="input-icon-left">
+                    <Phone size={18} />
+                  </div>
+                  <input
+                    type="text" value={form.whatsapp}
+                    onChange={(e) => setForm({ ...form, whatsapp: e.target.value })}
+                    className="input-field" placeholder="WhatsApp #"
+                  />
+                </div>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-surface-700 mb-1.5">Instagram</label>
-                <input
-                  type="text" value={form.instagram}
-                  onChange={(e) => setForm({ ...form, instagram: e.target.value })}
-                  className="input-field" placeholder="@handle"
-                />
+              <div className="input-group">
+                <label className="input-label">Instagram</label>
+                <div className="input-wrapper">
+                  <div className="input-icon-left">
+                    <User size={18} />
+                  </div>
+                  <input
+                    type="text" value={form.instagram}
+                    onChange={(e) => setForm({ ...form, instagram: e.target.value })}
+                    className="input-field" placeholder="@handle"
+                  />
+                </div>
               </div>
             </div>
 
-            <button type="submit" disabled={loading} className="btn-primary w-full py-3 disabled:opacity-50 mt-2">
+            <button type="submit" disabled={loading} className="btn-primary w-full py-3.5 mt-4 disabled:opacity-70">
               {loading ? (
                 <span className="flex items-center justify-center gap-2">
-                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
                   Creating account...
                 </span>
               ) : 'Create Account'}
             </button>
           </form>
 
-          <p className="text-center text-sm text-surface-500 mt-6">
-            Already have an account?{' '}
-            <Link to="/login" className="text-primary-600 font-semibold hover:text-primary-700 no-underline">Sign In</Link>
-          </p>
+          <div className="mt-8 pt-6 border-t border-surface-200/50 text-center">
+            <p className="text-sm text-surface-500 font-medium">
+              Already have an account?{' '}
+              <Link to="/login" className="text-gradient font-bold hover:opacity-80 transition-opacity no-underline ml-1">
+                Sign In
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>
